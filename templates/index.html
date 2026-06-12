@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zvonok Toksiku</title>
+</head>
+<body>
+    <h1> Vozimi telephone detca,i znay you hochesh poszonit mne</h1>
+    <img src="{{url_for('static', filename='meme.jpg')}}" alt="moy lisa">
+  <p>kol-vo zvonkov: <span id="likeCount">{{likes}}</span></p>
+  <button onclick="sendLike()">Pozvonite</button>  
+  <p><small>Stranica obnovlena {{views}} raz(a) </small></p>
+  <script>
+ async function sendLike() {
+    const response = await fetch ('/like',{method: 'POST'});
+    const data=await response.json();
+    document.getElementById('likeCount').innerText=data.likes;
+    
+ }
+  </script>
+</body>
+</html>
